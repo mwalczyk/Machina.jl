@@ -26,5 +26,12 @@ function affine_forward(x, w, b)
 end
 
 
-function affine_backward()
+function affine_backward(cache, dout)
+	x, w, b = cache
+
+	dx =
+	dw =
+	db =
+
+	(dx, dw, db)
 end

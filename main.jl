@@ -5,7 +5,7 @@ include("optim.jl")
 include("utils.jl")
 
 # Seed the random number generator
-srand(123)
+srand(231)
 
 num_inputs = 2
 input_shape = (4, 5, 6)
@@ -22,11 +22,11 @@ w = reshape(w, prod(input_shape), output_dim)
 b = linspace(-0.3, 0.1, output_dim)
 b = reshape(b, 1, output_dim)
 
-out, cache = affine_forward(x, w, b)
-correct_out = [[ 1.49834967  1.70660132  1.91485297]
-                [3.25553199  3.5141327   3.77273342]]
+dout = rand(prod(input_shape), output_dim)
 
-println(size(out))
-println(size(correct_out))
-rel_error = relative_error(out, correct_out)
-@printf "Relative error: %.14f" rel_error
+out, cache = affine_forward(x, w, b)
+
+numeric_gradient(x -> affine_forward(x, w, b), x, dout)
+
+println("dsads")
+#@printf "Relative error: %.20f" rel_error
